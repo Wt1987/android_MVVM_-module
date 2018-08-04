@@ -1,0 +1,21 @@
+buildscript {
+    apply from: 'config.gradle'
+    ext.build_module = build_module_login
+    addRepos(repositories)
+    dependencies {
+        classpath build_config.classpath_gradle
+        classpath build_config.classpath_kotlin
+        classpath build_config.classpath_arouter
+        classpath build_config.neenbedankt_apt
+//        classpath build_config.classpath_thinker
+    }
+}
+
+
+allprojects {
+    repositories {
+          addRepos(repositories)
+        maven { url 'https://jitpack.io' }
+    }
+}
+

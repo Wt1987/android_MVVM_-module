@@ -1,0 +1,19 @@
+<resources>
+  <string name="app_name">app_login</string>
+
+  <string name="login_icon_name">初中数学随身学</string>
+  <string name="skip">跳过</string>
+  <string name="hint_phone">请输入手机号码</string>
+  <string name="hint_code">请输入验证码</string>
+  <string name="hint_pwd">请输入密码</string>
+  <string name="forget_pwd">忘记密码</string>
+  <string name="get_code">重新获取验证码</string>
+  <string name="next">下一步</string>
+  <string name="pwd_login">密码登录</string>
+  <string name="code_login">验证码登录</string>
+  <string name="wei_xin">微信</string>
+  <string name="plat_choose">请选择教材版本</string>
+  <string name="qq">QQ</string>
+  <string name="third_login">第三方帐号登录</string>
+  <string name="hint_login_text">如果手机号来注册，将为你自动注册</string>
+</resources>

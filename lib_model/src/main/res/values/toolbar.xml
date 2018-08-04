@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--Toolbar-->
+
+    <declare-styleable name="ToolbarWithSpecialImgAndImg">
+        <attr name="ToolbarWithSpecialImgAndImg_titleText" format="string"/>
+        <attr name="ToolbarWithSpecialImgAndImg_rightDrawable" format="reference|color"/>
+        <attr name="ToolbarWithSpecialImgAndImg_leftDrawable" format="reference|color"/>
+        <attr name="ToolbarWithSpecialImgAndImg_right_left" format="dimension|integer"/>
+        <attr name="ToolbarWithSpecialImgAndImg_right_top" format="dimension|integer"/>
+        <attr name="ToolbarWithSpecialImgAndImg_right_right" format="dimension|integer"/>
+        <attr name="ToolbarWithSpecialImgAndImg_right_bottom" format="dimension|integer"/>
+        <attr name="ToolbarWithSpecialImgAndImg_left_padding" format="dimension|integer"/>
+        <attr name="ToolbarWithSpecialImgAndImg_left_isPadding" format="boolean"/>
+    </declare-styleable>
+    <declare-styleable name="ToolbarWithSpecialImgAndText">
+        <attr name="ToolbarWithSpecialImgAndText_leftDrawable" format="reference|color"/>
+        <attr name="ToolbarWithSpecialImgAndText_titleText" format="string|reference"/>
+        <attr name="ToolbarWithSpecialImgAndText_rightText" format="string|reference"/>
+        <attr name="ToolbarWithSpecialImgAndText_left_padding" format="dimension|integer"/>
+        <attr name="ToolbarWithSpecialImgAndText_left_isPadding" format="boolean"/>
+    </declare-styleable>
+
+    <declare-styleable name="ToolbarWithImgAndImg">
+        <attr name="ToolbarWithImgAndImg_titleText" format="string"/>
+        <attr name="ToolbarWithImgAndImg_rightDrawable" format="reference|color"/>
+        <attr name="ToolbarWithImgAndImg_leftDrawable" format="reference|color"/>
+        <attr name="ToolbarWithImgAndImg_right_left" format="dimension|integer"/>
+        <attr name="ToolbarWithImgAndImg_right_top" format="dimension|integer"/>
+        <attr name="ToolbarWithImgAndImg_right_right" format="dimension|integer"/>
+        <attr name="ToolbarWithImgAndImg_right_bottom" format="dimension|integer"/>
+    </declare-styleable>
+
+    <declare-styleable name="ToolbarWithTextAndText">
+        <attr name="ToolbarWithTextAndText_leftText" format="string"/>
+        <attr name="ToolbarWithTextAndText_rightText" format="string"/>
+        <attr name="ToolbarWithTextAndText_centerText" format="string"/>
+    </declare-styleable>
+
+    <declare-styleable name="ToolbarWithTextAndImg">
+        <attr name="ToolbarWithTextAndImg_leftText" format="string"/>
+        <attr name="ToolbarWithTextAndImg_rightDrawable" format="reference|color"/>
+        <attr name="ToolbarWithTextAndImg_centerText" format="string"/>
+    </declare-styleable>
+
+
+    <declare-styleable name="ToolbarWithImgAndText">
+        <attr name="ToolbarWithImgAndText_centerText" format="string"/>
+        <attr name="ToolbarWithImgAndText_rightText" format="string"/>
+        <attr name="ToolbarWithImgAndText_leftDrawable" format="reference|color"/>
+    </declare-styleable>
+
+</resources>

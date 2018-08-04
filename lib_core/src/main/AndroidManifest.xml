@@ -1,0 +1,6 @@
+<manifest package="com.duiafudao.lib_core"
+
+  xmlns:android="http://schemas.android.com/apk/res/android" >
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+</manifest>
+

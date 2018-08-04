@@ -1,0 +1,40 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion       build_config.compile_sdk
+    defaultConfig {
+        minSdkVersion       build_config.min_sdk
+        targetSdkVersion    build_config.target_sdk
+        versionCode         build_config.version_code
+        versionName         build_config.version_name
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [ moduleName : project.getName() ]
+            }
+        }
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    dataBinding {
+        enabled true
+    }
+}
+
+dependencies {
+    api fileTree(include: ['*.jar'], dir: 'libs')
+    api project(':lib_core')
+    api deps.butterknife
+    api deps.bindingcollectionadapter
+    api deps.bindingcollectionadapter_recyclerview
+    api deps.lifecycle_extensions
+    api deps.rxbinding
+    api deps.rxpermissions
+
+}

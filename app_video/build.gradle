@@ -1,0 +1,57 @@
+if(build_module == build_module_video) {
+    apply plugin: 'com.android.application'
+}else {
+    apply plugin: 'com.android.library'
+}
+
+android {
+    compileSdkVersion       build_config.compile_sdk
+    defaultConfig {
+        if(build_module == build_module_video) {
+            applicationId "com.duiafudao.app_video"
+        }
+        minSdkVersion       build_config.min_sdk
+        targetSdkVersion    build_config.target_sdk
+        versionCode         build_config.version_code
+        versionName         build_config.version_name
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [ moduleName : project.getName() ]
+            }
+        }
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    sourceSets {
+        main {
+            if (build_module == build_module_video) {
+                manifest.srcFile 'src/main/module/AndroidManifest.xml'
+            } else {
+                manifest.srcFile 'src/main/AndroidManifest.xml'
+                java {
+                    exclude 'com/duiafudao/app_video/application/**'
+                }
+            }
+        }
+    }
+
+    compileOptions {
+        encoding = 'utf-8'
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+}
+
+dependencies {
+    api fileTree(include: ['*.jar'], dir: 'libs')
+    implementation project(':lib_core')
+    implementation project(':lib_model')
+}

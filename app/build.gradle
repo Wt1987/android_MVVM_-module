@@ -1,0 +1,116 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+//apply plugin: 'com.tencent.tinker.patch'
+apply plugin: 'com.alibaba.arouter'
+
+android {
+    compileSdkVersion build_config.compile_sdk
+    defaultConfig {
+        applicationId build_config.app_id
+        minSdkVersion build_config.min_sdk
+        targetSdkVersion build_config.target_sdk
+        versionCode build_config.version_code
+        versionName build_config.version_name
+        multiDexEnabled true
+        resConfigs "zh"
+//        ndk {
+//            abiFilters 'armeabi', 'armeabi-v7a'
+//        }
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [moduleName: project.getName()]
+            }
+        }
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    dexOptions {
+        jumboMode true
+        javaMaxHeapSize "3072M"
+        preDexLibraries true
+    }
+
+    lintOptions {
+        quiet true
+        warningsAsErrors true
+    }
+
+    def keystorePropertiesFile = rootProject.file("keystore.properties")
+    def keystoreProperties = new Properties()
+    keystoreProperties.load(new InputStreamReader(new FileInputStream(keystorePropertiesFile), "utf-8"))
+
+    signingConfigs {
+        sign {
+            keyAlias keystoreProperties['keyAlias']
+            keyPassword keystoreProperties['keyPassword']
+            storeFile file(keystoreProperties['storeFile'])
+            storePassword keystoreProperties['storePassword']
+        }
+    }
+
+    packagingOptions {
+        exclude keystoreProperties['storeFile']
+    }
+
+    dataBinding {
+        enabled true
+    }
+
+    buildTypes {
+        debug {
+            debuggable true
+            signingConfig signingConfigs.sign
+            applicationIdSuffix ".debug"
+        }
+        release {
+            debuggable false
+            minifyEnabled true
+            shrinkResources true
+            zipAlignEnabled true
+            signingConfig signingConfigs.sign
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    applicationVariants.all {
+        def buildType = it.buildType.name
+        def createTime = buildTime()
+
+        if (buildType == "release") {
+            it.getPackageApplication().outputDirectory = new File(project.rootDir.absolutePath + "/apks/")
+        }
+
+        def fileName
+        it.outputs.each {
+            fileName = "${buildType}.apk"
+            it.outputFileName = fileName
+        }
+    }
+
+    compileOptions {
+        encoding = 'utf-8'
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+
+
+}
+
+def buildTime() {
+    return new Date().format("yyyy_MM_dd_HH:mm", TimeZone.getTimeZone("GMT+08:00"))
+}
+
+dependencies {
+    api fileTree(include: ['*.jar'], dir: 'libs')
+//    implementation deps.tinker
+    api project(':lib_model')
+    api project(':lib_core')
+    if (build_module == build_module_app) {
+        implementation project(':app_qb')
+        implementation project(':app_video')
+        implementation project(':app_pc')
+        implementation project(':app_login')
+    }
+}

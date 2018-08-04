@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.duiafudao.app_pc.mine.PersonViewModel"/>
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            >
+
+            <!-- 我 -->
+            <TextView
+                android:layout_width="@dimen/width_50"
+                android:layout_height="@dimen/height_50"
+                android:gravity="center"
+                android:text="@string/person_me"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/text_size_16"
+                />
+
+            <!-- 消息中心 -->
+            <ImageView
+                android:layout_width="@dimen/width_50"
+                android:layout_height="@dimen/height_50"
+                android:layout_alignParentRight="true"
+                android:padding="@dimen/padding_10"
+                android:src="@mipmap/ic_launcher"
+                />
+
+
+        </RelativeLayout>
+
+        <!-- 刷新控件,未引入 -->
+
+        <android.support.v4.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/height_100"
+                    android:background="@color/colorAccent"
+                    >
+
+                    <!-- 个人头像 -->
+                    <ImageView
+                        android:id="@+id/iv_portrait_person"
+                        android:layout_width="@dimen/width_50"
+                        android:layout_height="@dimen/height_50"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/padding_10"
+                        android:src="@mipmap/ic_launcher"
+                        />
+
+                    <!-- 姓名 -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/padding_20"
+                        android:layout_toRightOf="@+id/iv_portrait_person"
+                        android:text="@string/person_me"
+                        android:textColor="@android:color/white"
+                        android:textSize="@dimen/text_size_16"
+                        tools:text="对啊"
+                        />
+
+
+                    <ImageView
+                        android:id="@+id/iv_complete_person"
+                        android:layout_width="@dimen/width_50"
+                        android:layout_height="@dimen/height_50"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/padding_10"
+                        android:layout_marginRight="@dimen/padding_10"
+                        android:onClick="@{()-> viewModel.gotoPersonalCenter()}"
+                        android:src="@mipmap/ic_launcher"
+                        />
+
+                </RelativeLayout>
+
+                <android.support.v7.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    />
+
+            </LinearLayout>
+
+        </android.support.v4.widget.NestedScrollView>
+
+    </LinearLayout>
+
+
+</layout>

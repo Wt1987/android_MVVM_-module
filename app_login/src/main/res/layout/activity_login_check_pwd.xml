@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout>
+
+    <data>
+
+        <import type="android.view.View"/>
+        <import type="android.text.InputType"/>
+        <variable
+            name="viewLoginModel"
+            type="com.viewModel.LoginPwdViewModel" />
+    </data>
+
+
+    <android.support.constraint.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            app:onClickCommand="@{viewLoginModel.backCommand}"
+            android:id="@+id/iv_back"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:src="@mipmap/back"
+            />
+
+
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="@string/login_icon_name"
+            android:textStyle="bold"
+            android:id="@+id/title"
+            android:textSize="@dimen/text_size_24"
+            app:layout_constraintTop_toBottomOf="@+id/iv_back"
+            android:gravity="center"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/height_50"
+            android:text="@string/pwd_login"
+            android:id="@+id/tv_pwd_login"
+            android:textColor="@{viewLoginModel.layoutPwdLayoutVisibility ? @color/colorAccent :@color/cardview_dark_background }"
+            android:layout_marginLeft="@dimen/margin_40"
+            app:layout_constraintBottom_toTopOf="@+id/ll_center"
+            android:textSize="@dimen/text_size_14"
+            app:onClickCommand="@{viewLoginModel.showPwdLayoutOnClickCommand}"
+            app:layout_constraintLeft_toLeftOf="parent"
+            />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/height_50"
+            android:text="@string/code_login"
+            android:id="@+id/tv_code_login"
+            android:textColor="@{viewLoginModel.layoutCodeLayoutVisibility ? @color/colorAccent :@color/cardview_dark_background }"
+            android:layout_marginRight="@dimen/margin_40"
+            app:layout_constraintBottom_toTopOf="@+id/ll_center"
+            android:textSize="@dimen/text_size_14"
+            app:onClickCommand="@{viewLoginModel.showCodeLayoutOnClickCommand}"
+            app:layout_constraintRight_toRightOf="@+id/ll_center"
+            />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/ll_center"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:orientation="vertical">
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:visibility="@{viewLoginModel.layoutPwdLayoutVisibility ?  View.VISIBLE : View.GONE }"
+            android:layout_marginTop="@dimen/margin_40"
+            android:orientation="vertical"
+            >
+
+
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_40"
+                android:layout_marginRight="@dimen/margin_40"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:text="@={viewLoginModel.mPwd}"
+                android:id="@+id/et_pwd"
+                android:inputType="@{!viewLoginModel.showBtnVisibility ?  InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD : InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD}"
+                android:hint="@string/hint_pwd"
+                app:layout_constraintRight_toRightOf="parent"
+                android:textSize="@dimen/text_size_16"
+                />
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:padding="6dp"
+                android:src="@{viewLoginModel.pwdDrawableImg}"
+                android:layout_marginBottom="10dp"
+                app:layout_constraintBottom_toBottomOf="@+id/et_pwd"
+                app:layout_constraintRight_toRightOf="@+id/et_pwd"
+                app:onClickCommand="@{viewLoginModel.showPwdOnClickCommand}" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/padding_10"
+                android:text="@string/forget_pwd"
+                android:id="@+id/tv_hint_forget"
+                app:onClickCommand="@{viewLoginModel.forgetPwdClickCommand}"
+                app:layout_constraintRight_toRightOf="@+id/et_pwd"
+                android:textSize="@dimen/text_size_12"
+                app:layout_constraintTop_toBottomOf="@+id/et_pwd"
+                android:gravity="center"
+                />
+
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:hint="@string/next"
+                android:layout_marginTop="@dimen/margin_40"
+                android:layout_marginLeft="@dimen/margin_40"
+                android:layout_marginRight="@dimen/margin_40"
+                app:layout_constraintTop_toBottomOf="@+id/tv_hint_forget"
+                app:layout_constraintRight_toRightOf="parent"
+                app:onClickCommand="@{viewLoginModel.loginByPwdClickCommand}"
+                android:textSize="@dimen/text_size_18"/>
+
+        </android.support.constraint.ConstraintLayout>
+
+
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:id="@+id/ll_center_two"
+            android:visibility="@{viewLoginModel.layoutCodeLayoutVisibility ?  View.VISIBLE : View.GONE }"
+            android:paddingTop="@dimen/margin_40"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:orientation="vertical"
+            >
+
+
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_40"
+                android:layout_marginRight="@dimen/margin_40"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:text="@={viewLoginModel.mCode}"
+                android:id="@+id/et_code"
+                android:hint="@string/hint_code"
+                app:layout_constraintRight_toRightOf="parent"
+                android:textSize="@dimen/text_size_16"
+                />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/get_code"
+                android:padding="@dimen/padding_10"
+                android:id="@+id/tv_hint_get_code"
+                app:layout_constraintRight_toRightOf="@+id/et_code"
+                android:textSize="@dimen/text_size_12"
+                app:onClickCommand="@{viewLoginModel.getCodeClickCommand}"
+                app:layout_constraintTop_toBottomOf="@+id/et_code"
+                android:gravity="center"
+                />
+
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:hint="@string/next"
+                android:layout_marginTop="@dimen/margin_40"
+                android:layout_marginLeft="@dimen/margin_40"
+                android:layout_marginRight="@dimen/margin_40"
+                app:layout_constraintTop_toBottomOf="@+id/tv_hint_get_code"
+                app:layout_constraintRight_toRightOf="parent"
+                app:onClickCommand="@{viewLoginModel.loginByCodeClickCommand}"
+                android:textSize="@dimen/text_size_18"/>
+
+        </android.support.constraint.ConstraintLayout>
+
+        </LinearLayout>
+
+    </android.support.constraint.ConstraintLayout>
+
+
+</layout>

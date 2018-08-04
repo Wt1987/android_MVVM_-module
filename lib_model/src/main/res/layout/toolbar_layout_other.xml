@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:id="@+id/rl_friend_actionBar"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/height_45"
+               >
+
+    <ImageButton
+        android:id="@+id/view_item_goback"
+        android:layout_width="@dimen/width_45"
+        android:layout_height="match_parent"
+        android:layout_centerVertical="true"
+        android:padding="@dimen/padding_12"
+        android:background="@android:color/transparent"
+        android:contentDescription="@null"
+        android:scaleType="fitCenter"
+        />
+
+    <TextView
+        android:id="@+id/view_tv_item_center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/text_size_18"/>
+
+
+    <TextView
+        android:id="@+id/tv_item_right"
+        android:layout_width="@dimen/width_45"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:textSize="@dimen/text_size_16"
+        android:textColor="@android:color/white"
+        android:layout_alignParentRight="true"
+        />
+</RelativeLayout>

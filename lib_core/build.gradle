@@ -1,0 +1,75 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion       build_config.compile_sdk
+    defaultConfig {
+        minSdkVersion       build_config.min_sdk
+        targetSdkVersion    build_config.target_sdk
+        versionCode         build_config.version_code
+        versionName         build_config.version_name
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [ moduleName : project.getName() ]
+            }
+        }
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    api fileTree(include: ['*.jar'], dir: 'libs')
+
+    api deps.app_compat
+    api deps.v4
+    api deps.design
+    api deps.recyclerview
+    api deps.cardview
+    api deps.constraint
+    api deps.annotations
+    api deps.kotlin
+    api deps.dagger
+    api deps.arch_lifecycle_runtime
+    api deps.arch_lifecycle_extensions
+    api deps.arch_lifecycle_java8
+    api deps.room_runtime
+    api deps.room_rxjava2
+    api deps.paging
+    api deps.rxjava2
+    api deps.rxandroid
+    api deps.retrofit2
+    api deps.rxpermissions
+    api deps.rxlifecycle
+    api deps.rxlifecycle_android
+    api deps.rxlifecycle_components
+    api deps.stetho
+    api deps.stetho_okhttp3
+    api deps.converter_gson
+    api deps.arouter_api
+    //glide图片加载库
+    api deps.glide
+    //recyclerview的databinding套装
+    implementation deps.adapter_rxjava2
+    implementation deps.logging_interceptor
+
+    annotationProcessor deps.arch_lifecycle_compiler
+    annotationProcessor deps.room_compiler
+    annotationProcessor deps.arouter_compiler
+    annotationProcessor deps.dagger_compiler
+
+    testImplementation deps.junit
+    testImplementation deps.arch_testing
+    testImplementation deps.room_testing
+
+    androidTestImplementation deps.runner
+    androidTestImplementation deps.espresso
+
+    api project(':lib_wiget')
+
+}
